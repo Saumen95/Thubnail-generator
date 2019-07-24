@@ -1,21 +1,20 @@
 import os
 import sys
 from PIL import Image
-from PIL.ExifTags import ExifTags
+from PIL.ExifTags import TAGS
 
-AlbumDir = 'album'
-ThumbDir = '/Thumbnails' + AlbumDir
+albumdir = 'album'
+thumbdir = albumdir + '/thumbs'
 
 
 def mkdir(dirname):
     try:
         os.mkdir(dirname)
-
     except:
         pass
 
 
-def maxsize(image, maxSize, method=3):
+def maxSize(image, maxSize, method=3):
     imAspect = float(image.size[0])/float(image.size[1])
     outAspect = float(maxSize[0])/float(maxSize[1])
 
@@ -47,7 +46,7 @@ def processImage(imgdir, fname):
 
 def main():
     if len(sys.argv) < 2:
-        print "Usage: album.py imgdir"
+        print("Usage: album.py imgdir")
         exit(0)
     else:
         imgdir = sys.argv[1] + '/'
@@ -60,7 +59,7 @@ def main():
         if fname.lower().endswith('.jpg'):
             processImage(imgdir, fname)
 
-    print 'done'
+    print('done')
 
 
 if __name__ == "__main__":
